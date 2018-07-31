@@ -1,0 +1,55 @@
+/* * {
+    outline: 1px solid red;
+} */
+
+.bg-galaxy {
+    background: linear-gradient(130deg, #000066, #000033, #000033 45%, black, black 70%, #660033);
+}
+
+.hw100 {
+    height: 100vh;
+    width: 100vw;    
+}
+
+.box {
+    z-index: 2;
+    background: transparent;
+    width: 19em;
+    height: 18em;   
+    border-radius: 2em; 
+    border-style: solid;
+    border-color: white;
+  }
+
+  .box-pos {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+/* .topBs {
+    box-shadow: 0 .5em 50px white;
+}
+
+.bottomBs {
+    box-shadow: 0 -1em 50px white;
+} */
+
+
+
+
+
+/* Mobile */
+@media(max-width: 1125px){
+
+.box-pos {
+    padding-top: 2.5em;
+}
+.box {
+    width: 9.9em;
+    height: 8.5em;
+}
+
+
+}
