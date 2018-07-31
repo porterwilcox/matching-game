@@ -43,9 +43,7 @@
 /* Mobile */
 @media(max-width: 1125px){
 
-.box-pos {
-    padding-top: 2.5em;
-}
+
 .box {
     width: 9.9em;
     height: 8.5em;
