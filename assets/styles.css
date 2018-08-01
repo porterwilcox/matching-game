@@ -15,7 +15,7 @@
 }
 
 .box {
-    z-index: 2;
+    z-index: 1;
     background: transparent;
     width: 19em;
     height: 18em;   
@@ -32,7 +32,8 @@
     align-items: center;
 }
 
-#box6::before {
+.start {
+    z-index: 0;
     content: "START";
     color: whitesmoke;
     position: relative;
@@ -41,13 +42,6 @@
     font-size: 3em;
 }
 
-/* .topBs {
-    box-shadow: 0 .5em 50px white;
-}
-
-.bottomBs {
-    box-shadow: 0 -1em 50px white;
-} */
 
 
 
@@ -65,7 +59,7 @@
     height: 8.5em;
 }
 
-#box6::before {
+.start {
     top: 1em;
     left: .2em;
 }
