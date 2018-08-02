@@ -1,15 +1,16 @@
 //Variables
 let box = document.getElementsByClassName('box');
+let start = document.querySelector('.start')
 let compArr = [];
 let nSimonInt;
 let nBoxOff;
 let boxes = Array.from(box);
-
+let simonOff;
 
 
 //Functions
 let hideStart = function () {
-    document.querySelector(".start").style.display = 'none';
+    start.style.visibility = 'hidden';
 }
 
 let randomBox = function() {
@@ -18,24 +19,36 @@ let randomBox = function() {
     box[i].style.boxShadow = "0 0 50px white";
     compArr.push(i);
     nBoxOff = setTimeout(boxOff, 900);
+    simonOff = setTimeout(stopSimon, 4000);
 }
 
-let boxOff = function () {
+let boxOff = function() {
     let myBox = boxes.find(b => b.style.backgroundColor == "whitesmoke");
     myBox.style.backgroundColor = "transparent";
     myBox.style.boxShadow = "none";
 }
 
-let simon = function () {
+let simon = function() {
     nSimonInt = setInterval(randomBox, 1000);
-
 }
 
-// let isArr = function () {
-//     console.log(boxes);
-// }
+let stopSimon = function() {
+    clearInterval(nSimonInt);
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].style.pointerEvents = "all";
+    }
+}
+
+let colorChange = function() {
+    this.style.backgroundColor = "whitesmoke";
+    this.style.boxShadow = "0 0 50px white";
+    nBoxOff = setTimeout(boxOff, 500);
+}
+
 
 //Events
-box[5].addEventListener('click', hideStart);
-box[5].addEventListener('click', simon);
-// box[5].addEventListener('click', isArr);
+start.addEventListener('click', hideStart);
+start.addEventListener('click', simon);
+for (let i = 0; i < boxes.length; i++) {
+    boxes[i].addEventListener('click', colorChange);
+}

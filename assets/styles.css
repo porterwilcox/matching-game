@@ -15,13 +15,14 @@
 }
 
 .box {
-    z-index: 1;
+    z-index: 0;
     background: transparent;
     width: 19em;
     height: 18em;   
     border-radius: 2em; 
     border-style: solid;
     border-color: white;
+    pointer-events: none;
   }
 
   .box-pos {
@@ -33,13 +34,14 @@
 }
 
 .start {
-    z-index: 0;
+    z-index: 2;
     content: "START";
     color: whitesmoke;
     position: relative;
     top: 3.5em;
     left: .5em;
     font-size: 3em;
+    pointer-events: visible;
 }
 
 
