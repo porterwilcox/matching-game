@@ -1,6 +1,9 @@
 //Variables
 let box = document.getElementsByClassName('box');
-// console.log(box);
+let compArr = [];
+let nSimonInt;
+let nBoxOff;
+let boxes = Array.from(box);
 
 
 
@@ -13,10 +16,26 @@ let randomBox = function() {
     let i = Math.floor(Math.random()*8);
     box[i].style.backgroundColor = "whitesmoke";
     box[i].style.boxShadow = "0 0 50px white";
+    compArr.push(i);
+    nBoxOff = setTimeout(boxOff, 500);
+}
+console.log(compArr);
+
+let boxOff = function () {
+    let myBox = boxes.find(b => b.style.backgroundColor == "whitesmoke");
+    myBox.style.backgroundColor = "transparent";
+    myBox.style.boxShadow = "none";
 }
 
+let simon = function () {
+    nSimonInt = setInterval(randomBox, 1000);
+}
 
+// let isArr = function () {
+//     console.log(boxes);
+// }
 
 //Events
 box[5].addEventListener('click', hideStart);
-box[5].addEventListener('click', randomBox);
+box[5].addEventListener('click', simon);
+// box[5].addEventListener('click', isArr);
