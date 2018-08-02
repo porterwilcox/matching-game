@@ -29,6 +29,7 @@ let randomBox = function () {
     box[i].style.backgroundColor = "whitesmoke";
     box[i].style.boxShadow = "0 0 50px white";
     compArr.push(i);
+    testArr = compArr.slice();
     nBoxOff = setTimeout(boxOff, 900);
     simonOff = setTimeout(stopSimon, 4000);
 }
@@ -45,7 +46,6 @@ let simon = function () {
 
 let stopSimon = function () {
     clearInterval(nSimonInt);
-    testArr = compArr.slice();
     givePower();
 }
 
@@ -65,15 +65,17 @@ let playerMatch = function () {
     playerArr.push(boxes.findIndex(b => b.style.backgroundColor == "whitesmoke"));
     myIndex = playerArr.shift();
     testIndex = testArr.shift();
-    console.log(testArr);
-    if (testIndex == undefined) {
+    matchEnforcer(myIndex, testIndex);
+}
+
+function matchEnforcer(mine, comps) {
+    if (comps == undefined) {
         simon();
     }
-    else if (myIndex !== testIndex) {
+    else if (mine !== comps) {
         alert("You Lose.")
     }
 }
-
 
 //Events
 start.addEventListener('click', hideStart);
