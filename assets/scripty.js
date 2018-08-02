@@ -6,11 +6,18 @@ let nSimonInt;
 let nBoxOff;
 let boxes = Array.from(box);
 let simonOff;
+let playerArr = [];
+let shiftUnwanted;
 
 
 //Functions
 let hideStart = function () {
     start.style.visibility = 'hidden';
+    shiftUnwanted = setTimeout(shifty, 1000);
+}
+
+let shifty = function() {
+    playerArr.shift();
 }
 
 let randomBox = function() {
@@ -45,10 +52,19 @@ let colorChange = function() {
     nBoxOff = setTimeout(boxOff, 250);
 }
 
+let playerMatch = function () {
+   let myIndex = playerArr.push(boxes.findIndex(b => b.style.backgroundColor == "whitesmoke"));
+    let testArr = compArr.slice();
+    
+    console.log(testArr)
+    console.log(playerArr)
+}
+
 
 //Events
 start.addEventListener('click', hideStart);
 start.addEventListener('click', simon);
 for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('click', colorChange);
+    box[i].addEventListener('click', playerMatch);
 }
