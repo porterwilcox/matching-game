@@ -66,7 +66,7 @@ let playerMatch = function () {
     myIndex = playerArr.shift();
     testIndex = testArr.shift();
     console.log(testArr);
-    if (testArr.length == undefined) {
+    if (testIndex == undefined) {
         simon();
     }
     else if (myIndex !== testIndex) {
