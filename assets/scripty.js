@@ -17,9 +17,8 @@ let randomBox = function() {
     box[i].style.backgroundColor = "whitesmoke";
     box[i].style.boxShadow = "0 0 50px white";
     compArr.push(i);
-    nBoxOff = setTimeout(boxOff, 500);
+    nBoxOff = setTimeout(boxOff, 900);
 }
-console.log(compArr);
 
 let boxOff = function () {
     let myBox = boxes.find(b => b.style.backgroundColor == "whitesmoke");
@@ -29,6 +28,7 @@ let boxOff = function () {
 
 let simon = function () {
     nSimonInt = setInterval(randomBox, 1000);
+
 }
 
 // let isArr = function () {
