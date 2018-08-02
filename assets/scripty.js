@@ -42,7 +42,7 @@ let stopSimon = function() {
 let colorChange = function() {
     this.style.backgroundColor = "whitesmoke";
     this.style.boxShadow = "0 0 50px white";
-    nBoxOff = setTimeout(boxOff, 500);
+    nBoxOff = setTimeout(boxOff, 250);
 }
 
 

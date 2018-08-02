@@ -25,6 +25,7 @@
     pointer-events: none;
   }
 
+
   .box-pos {
     display: flex;
     flex-flow: wrap row;
@@ -33,15 +34,21 @@
     align-items: center;
 }
 
+#box6 {
+    background-color: whitesmoke;
+    box-shadow: 0 0 50px white;
+}
+
 .start {
     z-index: 2;
     content: "START";
-    color: whitesmoke;
+    color: black;
     position: relative;
     top: 3.5em;
     left: .5em;
     font-size: 3em;
     pointer-events: visible;
+    
 }
 
 
