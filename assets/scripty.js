@@ -31,7 +31,7 @@ let shifty = function () {
 }
 
 let randomBox = function () {
-    if (randomTurnCreator < 5){
+    if (randomTurnCreator < 4){
     let i = Math.floor(Math.random() * 8);
     box[i].style.backgroundColor = "whitesmoke";
     box[i].style.boxShadow = "0 0 50px white";
@@ -40,8 +40,8 @@ let randomBox = function () {
     randomTurnCreator++;
     console.log(compArr);
     }
-    else if(randomTurnCreator == 5){
-    randomTurnCreator -= 5;
+    else if(randomTurnCreator == 4){
+    randomTurnCreator = 0;
     testArr = compArr.slice();  
     stopSimon();
     }
@@ -87,25 +87,33 @@ function matchEnforcer(mine, comps) {
     if (mine !== comps) {
         alert("You Lose.")
     }
-    else if (turnCounter == 5 && masterTurn == 0){
+    else if (turnCounter == 4 && masterTurn == 0){
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 10 && masterTurn == 1){
+    else if (turnCounter == 8 && masterTurn == 1){
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 15 && masterTurn == 2){
+    else if (turnCounter == 12 && masterTurn == 2){
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 20 && masterTurn == 3){
+    else if (turnCounter == 16 && masterTurn == 3){
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
+    }
+    else if (turnCounter == 20 && masterTurn == 4){
+        turnCounter -= compArr.length;
+        masterTurn++;
+        recapIntStart();
+    }
+    else if (turnCounter == 24 && masterTurn == 5){
+       alert("You win!")
     }
 }
 
