@@ -1,6 +1,11 @@
 //Variables
 let box = document.getElementsByClassName('box');
 let start = document.querySelector('.start')
+let you = document.getElementById('you');
+let winLose = document.getElementById('win-lose');
+let score = document.getElementById('score');
+let numberScore = document.getElementById('number-score');
+let reset = document.getElementById('reset');
 let compArr = [];
 let nSimonInt;
 let nBoxOff;
@@ -21,7 +26,7 @@ let randomTurnCreator = 0;
 
 //Functions
 let hideStart = function () {
-    start.style.visibility = 'hidden';
+    start.style.display = 'none';
     shiftUnwanted = setTimeout(shifty, 1000);
     turnCounter--;
 }
@@ -31,19 +36,19 @@ let shifty = function () {
 }
 
 let randomBox = function () {
-    if (randomTurnCreator < 4){
-    let i = Math.floor(Math.random() * 8);
-    box[i].style.backgroundColor = "whitesmoke";
-    box[i].style.boxShadow = "0 0 50px white";
-    nBoxOff = setTimeout(boxOff, 900);
-    compArr.push(i);
-    randomTurnCreator++;
-    console.log(compArr);
+    if (randomTurnCreator < 4) {
+        let i = Math.floor(Math.random() * 8);
+        box[i].style.backgroundColor = "whitesmoke";
+        box[i].style.boxShadow = "0 0 50px white";
+        nBoxOff = setTimeout(boxOff, 900);
+        compArr.push(i);
+        randomTurnCreator++;
+        console.log(compArr);
     }
-    else if(randomTurnCreator == 4){
-    randomTurnCreator = 0;
-    testArr = compArr.slice();  
-    stopSimon();
+    else if (randomTurnCreator == 4) {
+        randomTurnCreator = 0;
+        testArr = compArr.slice();
+        stopSimon();
     }
 }
 
@@ -58,7 +63,7 @@ let simon = function () {
 }
 
 let stopSimon = function () {
-    recapArr = compArr.slice();  
+    recapArr = compArr.slice();
     clearInterval(nSimonInt);
     givePower();
 }
@@ -83,61 +88,128 @@ let playerMatch = function () {
 }
 
 function matchEnforcer(mine, comps) {
-    turnCounter++;
     if (mine !== comps) {
-        alert("You Lose.")
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.pointerEvents = "none";
+        }
+        box[0].style.backgroundColor = 'whitesmoke';
+        box[1].style.backgroundColor = 'whitesmoke';
+        box[2].style.backgroundColor = 'whitesmoke';
+        box[3].style.backgroundColor = 'whitesmoke';
+        box[4].style.backgroundColor = 'whitesmoke';
+        box[0].style.boxShadow = "0 0 50px white";
+        box[1].style.boxShadow = "0 0 50px white";
+        box[2].style.boxShadow = "0 0 50px white";
+        box[3].style.boxShadow = "0 0 50px white";
+        box[4].style.boxShadow = "0 0 50px white";
+        you.style.display = 'block';
+        winLose.innerText = "loser :("
+        winLose.style.display = "block";
+        score.style.display = "block";
+        numberScore.innerText = `${turnCounter}`;
+        numberScore.style.display = "block";
+        reset.style.display = "block";
     }
-    else if (turnCounter == 4 && masterTurn == 0){
+    turnCounter++;
+    if (turnCounter == 4 && masterTurn == 0) {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.pointerEvents = "none";
+        }
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 8 && masterTurn == 1){
+    else if (turnCounter == 8 && masterTurn == 1) {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.pointerEvents = "none";
+        }
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 12 && masterTurn == 2){
+    else if (turnCounter == 12 && masterTurn == 2) {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.pointerEvents = "none";
+        }
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 16 && masterTurn == 3){
+    else if (turnCounter == 16 && masterTurn == 3) {
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 20 && masterTurn == 4){
+    else if (turnCounter == 20 && masterTurn == 4) {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.pointerEvents = "none";
+        }
         turnCounter -= compArr.length;
         masterTurn++;
         recapIntStart();
     }
-    else if (turnCounter == 24 && masterTurn == 5){
-       alert("You win!")
+    else if (turnCounter == 24 && masterTurn == 5) {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.pointerEvents = "none";
+        }
+        box[0].style.backgroundColor = 'whitesmoke';
+        box[1].style.backgroundColor = 'whitesmoke';
+        box[2].style.backgroundColor = 'whitesmoke';
+        box[3].style.backgroundColor = 'whitesmoke';
+        box[4].style.backgroundColor = 'whitesmoke';
+        box[0].style.boxShadow = "0 0 50px white";
+        box[1].style.boxShadow = "0 0 50px white";
+        box[2].style.boxShadow = "0 0 50px white";
+        box[3].style.boxShadow = "0 0 50px white";
+        box[4].style.boxShadow = "0 0 50px white";
+        you.style.display = 'block';
+        winLose.innerText = "winner!"
+        winLose.style.display = "block";
+        score.style.display = "block";
+        numberScore.innerText = `${turnCounter}`;
+        numberScore.style.display = "block";
+        reset.style.display = "block";
     }
 }
 
-function recapIntStart () {
+function recapIntStart() {
     recapInt = setInterval(recaper, 1000);
 }
 
 function recaper() {
-    if (recapArr.length == 1){
+    if (recapArr.length == 1) {
         let boxIndex = recapArr.shift();
         box[boxIndex].style.backgroundColor = "whitesmoke";
         box[boxIndex].style.boxShadow = "0 0 50px white";
         nBoxOff = setTimeout(boxOff, 900);
         simon();
     }
-    if(recapArr.length > 0){
+    if (recapArr.length > 0) {
         let boxIndex = recapArr.shift();
         box[boxIndex].style.backgroundColor = "whitesmoke";
         box[boxIndex].style.boxShadow = "0 0 50px white";
         nBoxOff = setTimeout(boxOff, 900);
     } else {
-    clearInterval(recapInt);
+        clearInterval(recapInt);
     }
 }
+
+function resetAll() {
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].style.backgroundColor = "transparent";
+        boxes[i].style.boxShadow = "none";
+    }
+    you.style.display = 'none';
+    winLose.style.display = "none";
+    score.style.display = "none";
+    numberScore.style.display = "none";
+    boxes[5].style.backgroundColor = "whitesmoke";
+    boxes[5].style.boxShadow = "0 0 50px white";
+    start.style.display = "block";
+    compArr = [];
+    playerArr = [];
+}
+
 
 //Events
 start.addEventListener('click', hideStart);
@@ -146,3 +218,4 @@ for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('click', colorChange);
     box[i].addEventListener('click', playerMatch);
 }
+reset.addEventListener('click', resetAll);
