@@ -16,6 +16,7 @@ let turnCounter = 0;
 let masterTurn = 0;
 let recapArr = [];
 let recapInt;
+let randomTurnCreator = 0;
 
 
 //Functions
@@ -30,14 +31,20 @@ let shifty = function () {
 }
 
 let randomBox = function () {
+    if (randomTurnCreator < 5){
     let i = Math.floor(Math.random() * 8);
     box[i].style.backgroundColor = "whitesmoke";
     box[i].style.boxShadow = "0 0 50px white";
-    compArr.push(i);
-    console.log(compArr);
-    testArr = compArr.slice();  
     nBoxOff = setTimeout(boxOff, 900);
-    simonOff = setTimeout(stopSimon, 4000);
+    compArr.push(i);
+    randomTurnCreator++;
+    console.log(compArr);
+    }
+    else if(randomTurnCreator == 5){
+    randomTurnCreator -= 5;
+    testArr = compArr.slice();  
+    stopSimon();
+    }
 }
 
 let boxOff = function () {
