@@ -12,12 +12,17 @@ let testArr = [5];
 let testIndex;
 let myIndex;
 let empower;
+let turnCounter = 0;
+let masterTurn = 0;
+let recapArr = [];
+let recapInt;
 
 
 //Functions
 let hideStart = function () {
     start.style.visibility = 'hidden';
     shiftUnwanted = setTimeout(shifty, 1000);
+    turnCounter--;
 }
 
 let shifty = function () {
@@ -29,7 +34,8 @@ let randomBox = function () {
     box[i].style.backgroundColor = "whitesmoke";
     box[i].style.boxShadow = "0 0 50px white";
     compArr.push(i);
-    testArr = compArr.slice();
+    console.log(compArr);
+    testArr = compArr.slice();  
     nBoxOff = setTimeout(boxOff, 900);
     simonOff = setTimeout(stopSimon, 4000);
 }
@@ -45,6 +51,7 @@ let simon = function () {
 }
 
 let stopSimon = function () {
+    recapArr = compArr.slice();  
     clearInterval(nSimonInt);
     givePower();
 }
@@ -69,11 +76,51 @@ let playerMatch = function () {
 }
 
 function matchEnforcer(mine, comps) {
-    if (comps == undefined) {
+    turnCounter++;
+    if (mine !== comps) {
+        alert("You Lose.")
+    }
+    else if (turnCounter == 5 && masterTurn == 0){
+        turnCounter -= compArr.length;
+        masterTurn++;
+        recapIntStart();
+    }
+    else if (turnCounter == 10 && masterTurn == 1){
+        turnCounter -= compArr.length;
+        masterTurn++;
+        recapIntStart();
+    }
+    else if (turnCounter == 15 && masterTurn == 2){
+        turnCounter -= compArr.length;
+        masterTurn++;
+        recapIntStart();
+    }
+    else if (turnCounter == 20 && masterTurn == 3){
+        turnCounter -= compArr.length;
+        masterTurn++;
+        recapIntStart();
+    }
+}
+
+function recapIntStart () {
+    recapInt = setInterval(recaper, 1000);
+}
+
+function recaper() {
+    if (recapArr.length == 1){
+        let boxIndex = recapArr.shift();
+        box[boxIndex].style.backgroundColor = "whitesmoke";
+        box[boxIndex].style.boxShadow = "0 0 50px white";
+        nBoxOff = setTimeout(boxOff, 900);
         simon();
     }
-    else if (mine !== comps) {
-        alert("You Lose.")
+    if(recapArr.length > 0){
+        let boxIndex = recapArr.shift();
+        box[boxIndex].style.backgroundColor = "whitesmoke";
+        box[boxIndex].style.boxShadow = "0 0 50px white";
+        nBoxOff = setTimeout(boxOff, 900);
+    } else {
+    clearInterval(recapInt);
     }
 }
 
