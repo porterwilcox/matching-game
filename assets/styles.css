@@ -16,7 +16,7 @@
 
 .box {
     z-index: 0;
-    background: transparent;
+    background-color: transparent;
     width: 19em;
     height: 18em;   
     border-radius: 2em; 

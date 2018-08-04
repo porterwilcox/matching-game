@@ -8,7 +8,9 @@ let numberScore = document.getElementById('number-score');
 let reset = document.getElementById('reset');
 let compArr = [];
 let nSimonInt;
-let nBoxOff;
+let nBoxRandOff;
+let nBoxPlayOff;
+let boxPlay;
 let boxes = Array.from(box);
 let simonOff;
 let playerArr = [];
@@ -24,11 +26,14 @@ let recapInt;
 let randomTurnCreator = 0;
 
 
+
 //Functions
 let hideStart = function () {
     start.style.display = 'none';
     shiftUnwanted = setTimeout(shifty, 1000);
     turnCounter--;
+    box[5].style.backgroundColor = "transparent";
+    box[5].style.boxShadow = "none";
 }
 
 let shifty = function () {
@@ -40,7 +45,7 @@ let randomBox = function () {
         let i = Math.floor(Math.random() * 8);
         box[i].style.backgroundColor = "whitesmoke";
         box[i].style.boxShadow = "0 0 50px white";
-        nBoxOff = setTimeout(boxOff, 900);
+        nBoxRandOff = setTimeout(boxRandOff, 900);
         compArr.push(i);
         randomTurnCreator++;
         console.log(compArr);
@@ -52,11 +57,6 @@ let randomBox = function () {
     }
 }
 
-let boxOff = function () {
-    let myBox = boxes.find(b => b.style.backgroundColor == "whitesmoke");
-    myBox.style.backgroundColor = "transparent";
-    myBox.style.boxShadow = "none";
-}
 
 let simon = function () {
     nSimonInt = setInterval(randomBox, 1000);
@@ -76,8 +76,20 @@ let givePower = function () {
 
 let colorChange = function () {
     this.style.backgroundColor = "whitesmoke";
-    this.style.boxShadow = "0 0 50px white";
-    nBoxOff = setTimeout(boxOff, 250);
+    this.style.boxShadow = "0 0 50px white"; 
+    nBoxPlayOff = setTimeout(boxPlayOff.bind(), 250);
+}
+
+let boxPlayOff = function () {
+    let myBox = boxes.find(b => b.style.backgroundColor == "whitesmoke");
+    myBox.style.backgroundColor = "transparent";
+    myBox.style.boxShadow = "none";
+}
+
+let boxRandOff = function () {
+    let myBox = boxes.find(b => b.style.backgroundColor == "whitesmoke");
+    myBox.style.backgroundColor = "transparent";
+    myBox.style.boxShadow = "none";
 }
 
 let playerMatch = function () {
@@ -92,16 +104,16 @@ function matchEnforcer(mine, comps) {
         for (let i = 0; i < boxes.length; i++) {
             boxes[i].style.pointerEvents = "none";
         }
-        box[0].style.backgroundColor = 'whitesmoke';
         box[1].style.backgroundColor = 'whitesmoke';
         box[2].style.backgroundColor = 'whitesmoke';
-        box[3].style.backgroundColor = 'whitesmoke';
         box[4].style.backgroundColor = 'whitesmoke';
-        box[0].style.boxShadow = "0 0 50px white";
+        box[6].style.backgroundColor = 'whitesmoke';
+        box[7].style.backgroundColor = 'whitesmoke';
         box[1].style.boxShadow = "0 0 50px white";
         box[2].style.boxShadow = "0 0 50px white";
-        box[3].style.boxShadow = "0 0 50px white";
         box[4].style.boxShadow = "0 0 50px white";
+        box[6].style.boxShadow = "0 0 50px white";
+        box[7].style.boxShadow = "0 0 50px white";
         you.style.display = 'block';
         winLose.innerText = "loser :("
         winLose.style.display = "block";
@@ -109,6 +121,7 @@ function matchEnforcer(mine, comps) {
         numberScore.innerText = `${turnCounter}`;
         numberScore.style.display = "block";
         reset.style.display = "block";
+        return;
     }
     turnCounter++;
     if (turnCounter == 4 && masterTurn == 0) {
@@ -181,33 +194,21 @@ function recaper() {
         let boxIndex = recapArr.shift();
         box[boxIndex].style.backgroundColor = "whitesmoke";
         box[boxIndex].style.boxShadow = "0 0 50px white";
-        nBoxOff = setTimeout(boxOff, 900);
+        nBoxRandOff = setTimeout(boxRandOff, 900);
         simon();
     }
     if (recapArr.length > 0) {
         let boxIndex = recapArr.shift();
         box[boxIndex].style.backgroundColor = "whitesmoke";
         box[boxIndex].style.boxShadow = "0 0 50px white";
-        nBoxOff = setTimeout(boxOff, 900);
+        nBoxRandOff = setTimeout(boxRandOff, 900);
     } else {
         clearInterval(recapInt);
     }
 }
 
 function resetAll() {
-    for (let i = 0; i < boxes.length; i++) {
-        boxes[i].style.backgroundColor = "transparent";
-        boxes[i].style.boxShadow = "none";
-    }
-    you.style.display = 'none';
-    winLose.style.display = "none";
-    score.style.display = "none";
-    numberScore.style.display = "none";
-    boxes[5].style.backgroundColor = "whitesmoke";
-    boxes[5].style.boxShadow = "0 0 50px white";
-    start.style.display = "block";
-    compArr = [];
-    playerArr = [];
+   location.reload();
 }
 
 
