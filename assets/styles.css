@@ -1,19 +1,15 @@
-/* * {
-    outline: 1px solid red;
-} */
-
+body {
+    overflow: hidden;
+}
 .bg-galaxy {
     background: linear-gradient(130deg, #000066, #000033, #000033 45%, black, black 70%, #660033);
 }
-
 .w100 {
     width: 100vw;
 }
-
 .h50 {
     height: 50vh;
 }
-
 .box {
     z-index: 0;
     background-color: transparent;
@@ -24,21 +20,17 @@
     border-color: white;
     pointer-events: none;
   }
-
-
-  .box-pos {
+.box-pos {
     display: flex;
     flex-flow: wrap row;
     justify-content: space-evenly;
     align-content: space-evenly;
     align-items: center;
 }
-
 #box6 {
     background-color: whitesmoke;
     box-shadow: 0 0 50px white;
 }
-
 .texty {
     z-index: 2;
     content: "START";
@@ -50,7 +42,6 @@
     display: none;
     pointer-events: all;
 }
-
 .start {
     z-index: 2;
     content: "START";
@@ -61,35 +52,27 @@
     font-size: 3em;
     pointer-events: visible;
     display: block;
+    cursor: pointer;
 }
-
-
-
-
-
-
-
+#reset {
+    cursor: pointer;
+}
 
 /* Mobile */
 @media(max-width: 1125px){
-
 .bg-galaxy {
     background: linear-gradient(130deg, #000066, #000033, #000033 35%, black, black 55%, #660033);
 }
-
 .box {
     width: 9.9em;
     height: 8.5em;
 }
-
 .texty {
     top: 1em;
     left: .2em;
 }
-
 .start {
     top: 1em;
     left: .2em;
 }
-
 }
